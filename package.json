@@ -1,0 +1,42 @@
+{
+  "name": "triton",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Daniel Cózar Grafiá",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3"
+  },
+  "dependencies": {
+    "csv-stringify": "^6.5.0",
+    "fs-extra": "^11.2.0",
+    "xlsx": "^0.18.5"
+  },
+  "build": {
+    "appId": "com.dcozargrafia.tritonchips",
+    "productName": "Triton Chip Manager",
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "mac": {
+      "target": ["dmg"]
+    },
+    "linux": {
+      "target": ["AppImage"]
+    }
+  },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/dcozargrafia/triton-chip-manager.git"
+}
+}

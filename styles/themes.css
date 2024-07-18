@@ -1,0 +1,38 @@
+/* Tema claro (predeterminado) */
+:root {
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --button-bg: #4CAF50;
+    --button-text: #ffffff;
+    --input-bg: #f0f0f0;
+    --border-color: #cccccc;
+  }
+  
+  /* Tema oscuro */
+  .dark-theme {
+    --background-color: #333333;
+    --text-color: #ffffff;
+    --button-bg: #45a049;
+    --button-text: #ffffff;
+    --input-bg: #555555;
+    --border-color: #666666;
+  }
+  
+  /* Aplicar variables CSS */
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  
+  button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+  }
+  
+  input[type="text"], input[type="number"] {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+  }
+  
+  /* Añade más estilos según sea necesario */
