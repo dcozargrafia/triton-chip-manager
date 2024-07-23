@@ -2,7 +2,7 @@
 :root {
     --background-color: #ffffff;
     --text-color: #333333;
-    --button-bg: #4CAF50;
+    --button-bg: #1b45d0;
     --button-text: #ffffff;
     --input-bg: #f0f0f0;
     --border-color: #cccccc;
@@ -12,7 +12,7 @@
   .dark-theme {
     --background-color: #333333;
     --text-color: #ffffff;
-    --button-bg: #45a049;
+    --button-bg: #1b45d0;
     --button-text: #ffffff;
     --input-bg: #555555;
     --border-color: #666666;
