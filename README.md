@@ -14,9 +14,8 @@ Triton Chip Manager es una aplicación de escritorio para la gestión de chips d
 
 1. Ve a la sección [Releases](https://github.com/dcozargrafia/triton-chip-manager/releases) de este repositorio.
 2. Descarga el instalador apropiado para tu sistema operativo:
-   - Para Windows: `Triton-Chip-Manager-Setup-x.x.x.exe`
-   - Para macOS: `Triton-Chip-Manager-x.x.x.dmg`
-   - Para Linux: `Triton-Chip-Manager-x.x.x.AppImage` o `.deb`
+   - Para Windows: `Triton.Chip.Manager.Setup.1.0.0.exe`
+
 3. Ejecuta el instalador y sigue las instrucciones en pantalla.
 
 ### Desarrolladores
