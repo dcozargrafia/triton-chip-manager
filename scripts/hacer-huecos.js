@@ -21,16 +21,21 @@ async function processFiles(stockFile, lostFile) {
         const lostData = XLSX.utils.sheet_to_json(lostSheet, { header: 1, defval: '' });
 
         // Crear un mapa de Dorsal a EPC desde stockData
-        const dorsalToEPC = new Map(stockData.map(row => [row.Dorsal.toString(), row.EPC]));
+        const dorsalToEPC = new Map(stockData.map(row => {
+            const dorsal = row.Dorsal;
+            return dorsal != null ? [dorsal.toString(), row.EPC] : null;
+        }).filter(Boolean));
 
         // Generar datos de salida
-        const outputData = lostData.map(row => {
-            const dorsal = row[0].toString();
-            return {
-                Dorsal: dorsal,
-                EPC: dorsalToEPC.get(dorsal) || ''
-            };
-        }).filter(row => row.Dorsal !== ''); // Filtrar filas vacías si las hay
+        const outputData = lostData
+            .filter(row => row.length > 0 && row[0] != null)
+            .map(row => {
+                const dorsal = row[0].toString();
+                return {
+                    Dorsal: dorsal,
+                    EPC: dorsalToEPC.get(dorsal) || ''
+                };
+            });
 
         // Convertir a CSV
         const csv = stringify(outputData, {
