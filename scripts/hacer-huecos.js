@@ -3,12 +3,8 @@ const XLSX = require('xlsx');
 const { stringify } = require("csv-stringify/sync");
 const path = require('path');
 
-
 async function processFiles(stockFile, lostFile) {
     console.log('processFiles llamado', stockFile, lostFile);
-    // Aquí va la lógica de procesamiento
-    // console.log('Procesando archivos: ', stockFile.name, lostFile.name);
-    // alert(`Procesando archivos: \n${stockFile.name}\n${lostFile.name}`);
     try {
         // Leer archivos Excel
         const stockWorkbook = XLSX.read(await stockFile.arrayBuffer(), {type: 'buffer'});
@@ -18,21 +14,23 @@ async function processFiles(stockFile, lostFile) {
         const stockSheet = stockWorkbook.Sheets[stockWorkbook.SheetNames[0]];
         const lostSheet = lostWorkbook.Sheets[lostWorkbook.SheetNames[0]];
 
-        // Convertir las hojas en arrays de objetos
+        // Convertir el archivo de stock a array de objetos (con encabezados)
         const stockData = XLSX.utils.sheet_to_json(stockSheet);
-        const lostData = XLSX.utils.sheet_to_json(lostSheet);
+
+        // Convertir el archivo de chips perdidos a array de arrays (sin encabezados)
+        const lostData = XLSX.utils.sheet_to_json(lostSheet, { header: 1, defval: '' });
 
         // Crear un mapa de Dorsal a EPC desde stockData
         const dorsalToEPC = new Map(stockData.map(row => [row.Dorsal.toString(), row.EPC]));
 
         // Generar datos de salida
         const outputData = lostData.map(row => {
-            const dorsal = Object.values(row)[0].toString(); 
+            const dorsal = row[0].toString();
             return {
                 Dorsal: dorsal,
                 EPC: dorsalToEPC.get(dorsal) || ''
             };
-        });
+        }).filter(row => row.Dorsal !== ''); // Filtrar filas vacías si las hay
 
         // Convertir a CSV
         const csv = stringify(outputData, {
@@ -43,7 +41,6 @@ async function processFiles(stockFile, lostFile) {
 
         // Solicitar al proceso principal que guarde el archivo
         const result = await ipcRenderer.invoke('save-file', csv);
-
         if (result.success) {
             alert(`Archivo CSV generado con éxito: ${result.filePath}`);
         } else {
@@ -53,7 +50,7 @@ async function processFiles(stockFile, lostFile) {
         console.error('Error al procesar los archivos:', error);
         alert('Error al procesar los archivos: ' + error.message);
     }
-};
+}
 
 console.log('hacer-huecos.js cargado');
 
