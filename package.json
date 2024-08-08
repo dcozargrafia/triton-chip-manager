@@ -23,16 +23,19 @@
     "appId": "com.dcozargrafia.tritonchips",
     "productName": "Triton Chip Manager",
     "win": {
+      "icon": "assets/icons/win/icon.ico",
       "target": [
         "nsis",
         "zip"
       ]
     },
     "mac": {
-      "target": ["dmg"]
+      "target": ["dmg"],
+      "icon": "assets/icons/mac/icon.icns"
     },
     "linux": {
-      "target": ["AppImage"]
+      "target": ["AppImage"],
+      "icon": "assets/icons/png/256x256.png"
     }
   },
   "repository": {
