@@ -78,8 +78,8 @@ function loadGenerarVenta() {
             <p id="secuenciacion-file-name"></p>
         </div>
         <div class="input-group">
-            <label for="extended-code">Código de secuenciación extendida (1-255):</label>
-            <input type="number" id="extended-code" min="1" max="255">
+            <label for="extended-code">Código de secuenciación extendida (0-255):</label>
+            <input type="number" id="extended-code" min="0" max="255">
         </div>
         <div class="input-group">
             <label for="adjustment">Ajuste (opcional):</label>
